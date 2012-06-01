@@ -6,5 +6,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
+    <MachineName>10.0.0.115 (demo)</MachineName>
   </PropertyGroup>
 </Project>

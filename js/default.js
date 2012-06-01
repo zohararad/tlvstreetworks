@@ -90,6 +90,7 @@
 
     var RouteFinder = {
         routes: [],
+        currentRouteElement:null,
         restAPIURL: 'http://maps.googleapis.com/maps/api/directions/json?region=il&sensor=false&mode=walking',
         init: function () {
             this.mapIframe = document.getElementById('mapContainer');
@@ -137,7 +138,12 @@
             var li = document.createElement('li');
             li.innerHTML = [route.street, ' - ', route.section].join('');
             li.addEventListener('click', function () {
+                if (this.currentRouteElement !== null) {
+                    this.currentRouteElement.className = '';
+                }
                 this.mapIframe.contentWindow.postMessage(JSON.stringify({ index: index, action: 'centerOnRoute' }), "*");
+                li.className = 'active'
+                this.currentRouteElement = li;
             }.bind(this), false);
             this.routesList.appendChild(li);
         },

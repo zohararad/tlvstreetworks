@@ -47,7 +47,8 @@ header {
     -ms-transition: background-color 500ms;
 }
 
-#routesList li:hover {
+#routesList li:hover,
+#routesList li.active {
     -ms-transition: background-color 1s;
     cursor: pointer;
     background-color: #333;        

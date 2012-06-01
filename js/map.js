@@ -8,6 +8,8 @@
     var Map = {
         routes: [],
         markers: [],
+        infoWindows: [],
+        currentInfoWindow:null,
         /**
          * Initialize the map manager
          */
@@ -51,12 +53,16 @@
             });
 
             google.maps.event.addListener(marker, 'click', function () {
+                if (this.currentInfoWindow !== null) {
+                    this.currentInfoWindow.close();
+                }
                 infowindow.open(this.map, marker);
+                this.currentInfoWindow = infowindow;
             }.bind(this));
 
             this.routes[index] = path[0];
             this.markers[index] = marker;
-
+            this.infoWindows[index] = infowindow;
             if (index === 0) {
                 this.map.panTo(path[0]);
             }
@@ -69,14 +75,19 @@
             var d = JSON.parse(e.data);
             this[d.action](d);
         },
+        /**
+         * Center map on a given point / route
+         */
         centerOnRoute: function (d) {
             var point = this.routes[d.index];
             this.map.panTo(point);
             var marker = this.markers[d.index];
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            window.setTimeout(function () {
-                marker.setAnimation(null);
-            }, 3000);
+            if (this.currentInfoWindow !== null) {
+                this.currentInfoWindow.close();
+            }
+            var infowindow = this.infoWindows[d.index];
+            infowindow.open(this.map, marker);
+            this.currentInfoWindow = infowindow;
         }
     }
 
