@@ -40,10 +40,9 @@
             });
 
             var s = [
-                                '<h1>', route.street, '</h1>',
-                                '<h2>', route.section, '</h2>',
-                                '<p><strong>בתאריכים: </strong>', route.from, ' עד ', route.to, '</p>',
-                                '<p>', route.restriction, '</p>'
+                                '<div class="routeInfo"><p class="section">', route.street, ' ', route.section, '</p>',
+                                '<p class="period">בתאריכים: ', route.from, ' עד ', route.to, '</p>',
+                                '<p class="restrictions">', route.restriction, '</p></div>'
             ];
 
             var infowindow = new google.maps.InfoWindow({
@@ -55,6 +54,9 @@
             }.bind(this));
 
             this.routes[index] = path[0];
+            if (index === 0) {
+                this.map.panTo(path[0]);
+            }
         },
         /**
          * Handle postMessage call from app main window

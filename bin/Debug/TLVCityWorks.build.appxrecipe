@@ -323,11 +323,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Zohar Arad\Documents\Visual Studio 11\Projects\TLVCityWorks\TLVCityWorks\css\default.css">
       <PackagePath>css\default.css</PackagePath>
-      <Modified>2012-06-01T09:40:25.995</Modified>
+      <Modified>2012-06-01T09:52:18.857</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Zohar Arad\Documents\Visual Studio 11\Projects\TLVCityWorks\TLVCityWorks\css\map.css">
       <PackagePath>css\map.css</PackagePath>
-      <Modified>2012-06-01T08:28:32.572</Modified>
+      <Modified>2012-06-01T10:08:02.599</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Zohar Arad\Documents\Visual Studio 11\Projects\TLVCityWorks\TLVCityWorks\default.html">
       <PackagePath>default.html</PackagePath>
@@ -355,11 +355,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Zohar Arad\Documents\Visual Studio 11\Projects\TLVCityWorks\TLVCityWorks\js\default.js">
       <PackagePath>js\default.js</PackagePath>
-      <Modified>2012-06-01T09:32:16.177</Modified>
+      <Modified>2012-06-01T09:57:02.996</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Zohar Arad\Documents\Visual Studio 11\Projects\TLVCityWorks\TLVCityWorks\js\map.js">
       <PackagePath>js\map.js</PackagePath>
-      <Modified>2012-06-01T09:40:35.011</Modified>
+      <Modified>2012-06-01T10:07:54.749</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Zohar Arad\Documents\Visual Studio 11\Projects\TLVCityWorks\TLVCityWorks\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

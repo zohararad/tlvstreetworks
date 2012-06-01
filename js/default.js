@@ -54,9 +54,11 @@
             this.routesList = document.getElementById('routesList');
             this.parseRoutes();
         },
+        /**
+         * Iterate over routes and get directions from Google Maps Directions API
+         */
         parseRoutes: function () {
-            for (var i = 0, l = StreetData.length; i < l; i++) {
-                var o = StreetData[i];
+            StreetData.forEach(function (o, i) {
                 var route = this.parseAddress(o.street, o.section);
                 var request = {
                     origin: route.origin,
@@ -68,7 +70,7 @@
                     function complete(result) {
                         var d = JSON.parse(result.responseText);
                         if (d.status === 'OK') {
-                            o.points = d.routes[0].overview_polyline.points; 
+                            o.points = d.routes[0].overview_polyline.points;
                             this.routes.push(o);
                             this.updateRouteOnMap(o, index);
                             this.addRouteToList(o, index);
@@ -78,7 +80,7 @@
                         console.log(result.statusText);
                     }.bind(this)
                 );
-            }
+            }.bind(this));
         },
         /**
          * Send route data to map
