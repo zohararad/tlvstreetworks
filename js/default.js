@@ -43,20 +43,65 @@
                         restriction: 'מ- 07:00 עד 07:00, מסלול צפוני סגור התנועה כסדרה',
                         from: '26/06/2011',
                         to: '26/06/2012'
+                    },
+                    {
+                        street: 'רחוב נתן אלתרמן',
+                        section: 'מרחוב אביגדור המאירי עד רחוב מנורה',
+                        restriction: 'מ- 09:00 עד 17:00, התנועה חד סיטרית עפ"י השילוט בתקופת העבודות בלבד',
+                        from: '15/04/2012',
+                        to: '31/05/2012'
+                    },
+                    {
+                        street: 'רחוב אסתר המלכה',
+                        section: 'מרחוב ריינס עד רחוב דיזנגוף',
+                        restriction: 'מ- 14:00 עד 23:00',
+                        from: '01/04/2012',
+                        to: '28/06/2012'
+                    },
+                    {
+                        street: 'רחוב ברגי בנימין',
+                        section: 'משדרות החי"ל עד רחוב נגבה',
+                        restriction: 'ללא',
+                        from: '13/05/2012',
+                        to: '13/08/2012'
+                    },
+                    {
+                        street: 'רחוב ברנט',
+                        section: 'מרחוב שבזי עד רחוב המרד',
+                        restriction: 'ללא',
+                        from: '06/02/2012',
+                        to: '06/07/2012'
+                    },
+                    {
+                        street: 'רחוב גבעון',
+                        section: 'מרחוב ארניה אוסוולדו עד רחוב 1098',
+                        restriction: 'מ- 07:00 עד 07:00, מתחם החניון סגור פרט ל 70 מקומות',
+                        from: '15/11/2011',
+                        to: '09/11/2012'
+                    },
+                    {
+                        street: 'רחוב גזר',
+                        section: 'מרחוב מגידו עד רחוב פרישמן',
+                        restriction: 'מ- 07:00 עד 23:00',
+                        from: '29/04/2012',
+                        to: '29/06/2012'
                     }
     ];
 
     var RouteFinder = {
         routes: [],
+        currentRouteElement:null,
         restAPIURL: 'http://maps.googleapis.com/maps/api/directions/json?region=il&sensor=false&mode=walking',
         init: function () {
             this.mapIframe = document.getElementById('mapContainer');
             this.routesList = document.getElementById('routesList');
             this.parseRoutes();
         },
+        /**
+         * Iterate over routes and get directions from Google Maps Directions API
+         */
         parseRoutes: function () {
-            for (var i = 0, l = StreetData.length; i < l; i++) {
-                var o = StreetData[i];
+            StreetData.forEach(function (o, i) {
                 var route = this.parseAddress(o.street, o.section);
                 var request = {
                     origin: route.origin,
@@ -68,7 +113,7 @@
                     function complete(result) {
                         var d = JSON.parse(result.responseText);
                         if (d.status === 'OK') {
-                            o.points = d.routes[0].overview_polyline.points; 
+                            o.points = d.routes[0].overview_polyline.points;
                             this.routes.push(o);
                             this.updateRouteOnMap(o, index);
                             this.addRouteToList(o, index);
@@ -78,7 +123,7 @@
                         console.log(result.statusText);
                     }.bind(this)
                 );
-            }
+            }.bind(this));
         },
         /**
          * Send route data to map
@@ -93,7 +138,12 @@
             var li = document.createElement('li');
             li.innerHTML = [route.street, ' - ', route.section].join('');
             li.addEventListener('click', function () {
+                if (this.currentRouteElement !== null) {
+                    this.currentRouteElement.className = '';
+                }
                 this.mapIframe.contentWindow.postMessage(JSON.stringify({ index: index, action: 'centerOnRoute' }), "*");
+                li.className = 'active'
+                this.currentRouteElement = li;
             }.bind(this), false);
             this.routesList.appendChild(li);
         },

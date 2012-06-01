@@ -6,7 +6,10 @@
      * Map manager
      */
     var Map = {
-        routes:[],
+        routes: [],
+        markers: [],
+        infoWindows: [],
+        currentInfoWindow:null,
         /**
          * Initialize the map manager
          */
@@ -40,10 +43,9 @@
             });
 
             var s = [
-                                '<h1>', route.street, '</h1>',
-                                '<h2>', route.section, '</h2>',
-                                '<p><strong>בתאריכים: </strong>', route.from, ' עד ', route.to, '</p>',
-                                '<p>', route.restriction, '</p>'
+                                '<div class="routeInfo"><p class="section">', route.street, ' ', route.section, '</p>',
+                                '<p class="period">בתאריכים: ', route.from, ' עד ', route.to, '</p>',
+                                '<p class="restrictions">', route.restriction, '</p></div>'
             ];
 
             var infowindow = new google.maps.InfoWindow({
@@ -51,10 +53,19 @@
             });
 
             google.maps.event.addListener(marker, 'click', function () {
+                if (this.currentInfoWindow !== null) {
+                    this.currentInfoWindow.close();
+                }
                 infowindow.open(this.map, marker);
+                this.currentInfoWindow = infowindow;
             }.bind(this));
 
             this.routes[index] = path[0];
+            this.markers[index] = marker;
+            this.infoWindows[index] = infowindow;
+            if (index === 0) {
+                this.map.panTo(path[0]);
+            }
         },
         /**
          * Handle postMessage call from app main window
@@ -64,9 +75,19 @@
             var d = JSON.parse(e.data);
             this[d.action](d);
         },
+        /**
+         * Center map on a given point / route
+         */
         centerOnRoute: function (d) {
             var point = this.routes[d.index];
             this.map.panTo(point);
+            var marker = this.markers[d.index];
+            if (this.currentInfoWindow !== null) {
+                this.currentInfoWindow.close();
+            }
+            var infowindow = this.infoWindows[d.index];
+            infowindow.open(this.map, marker);
+            this.currentInfoWindow = infowindow;
         }
     }
 

@@ -25,6 +25,7 @@ header {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
+    padding: 15px 10px 0 0;
 }
 
 #routesList {
@@ -46,7 +47,8 @@ header {
     -ms-transition: background-color 500ms;
 }
 
-#routesList li:hover {
+#routesList li:hover,
+#routesList li.active {
     -ms-transition: background-color 1s;
     cursor: pointer;
     background-color: #333;        

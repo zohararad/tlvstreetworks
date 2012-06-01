@@ -4,4 +4,8 @@
     <ReferenceCachePath>C:\Users\Zohar Arad\AppData\Local\Temp\TLVCityWorks_refcache</ReferenceCachePath>
     <AutoRefresh>true</AutoRefresh>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
+    <MachineName>10.0.0.115 (demo)</MachineName>
+  </PropertyGroup>
 </Project>
