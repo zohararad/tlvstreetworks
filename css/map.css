@@ -1,0 +1,32 @@
+﻿html {
+    height: 100% 
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    color:  #000;
+}
+
+h1 {
+    font-size: 18px;
+    padding: 0;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 16px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+p {
+    padding: 0;
+}
+
+#map_canvas {
+    height: 100%
+}

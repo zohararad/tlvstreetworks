@@ -1,0 +1,6 @@
+navV2/compass.png
+width: 52px; height: 52px; background-position: 0px 0px;
+navV2/road_zoom_in.png
+width: 41px; height: 40px; background-position: 0px -94px;
+navV2/road_zoom_out.png
+width: 41px; height: 40px; background-position: 0px -53px;
