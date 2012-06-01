@@ -1,26 +1,18 @@
 {
-	"name":"jest",
-	"description":"JavaScriptational State Transfer. JS restful API layer with Mongoose based resources. Inspired by python Tastypie",
-	"version":"0.0.97",
-	"author":"Ishai Jaffe <ishai@empeeric.com>",
+	"name":"tlvstreetworks",
+	"description":"tlvstreetworks",
+	"version":"0.0.1",
+	"author":"Zohar Arad <zohar.arad@gmail.com>",
 	"contributors": [
-		{ "name": "Alon Valadji", "email": "alon@empeeric.com" }
+		{ "name": "Refael Ackermann", "email": "refael@empeeric.com" }
 	],
 	"dependencies":{
-		"express-resource":"",
-		"underscore":"",
-		"sji":"",
-        "zombie":"",
-        "util": ""
-	},
-	"devDependencies":{ 
-		"express":"",
-		"mongoose":"",
-		"api-easy":""
+        "jsdom":"",
+		"express":""
 	},
 	"main":"index",
-	"keywords":["api", "mongoose", "rest", "restful", "resource"],
-	"repository":"git@github.com:Empeeric/jest.git",
+	"keywords":["tlvstreetworks"],
+	"repository":"git://github.com/zohararad/tlvstreetworks.git",
 	"engines":{
 		"node":">= 0.6.18"
 	}
