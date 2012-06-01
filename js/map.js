@@ -6,7 +6,8 @@
      * Map manager
      */
     var Map = {
-        routes:[],
+        routes: [],
+        markers: [],
         /**
          * Initialize the map manager
          */
@@ -54,6 +55,8 @@
             }.bind(this));
 
             this.routes[index] = path[0];
+            this.markers[index] = marker;
+
             if (index === 0) {
                 this.map.panTo(path[0]);
             }
@@ -69,6 +72,11 @@
         centerOnRoute: function (d) {
             var point = this.routes[d.index];
             this.map.panTo(point);
+            var marker = this.markers[d.index];
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            window.setTimeout(function () {
+                marker.setAnimation(null);
+            }, 3000);
         }
     }
 
